@@ -101,3 +101,40 @@
     z-index: 1;
   }
   
+  .tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+  }
+  
+  .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    width: max-content;
+    background-color: none;
+    color:  rgba(53, 184, 190, 1);
+    text-align: center;
+    border-radius: 8px;
+    padding: 6px 10px;
+    position: absolute;
+    z-index: 10;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  
+  .tooltip-wrapper:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -5px);
+  }
+  
+  .call-word {
+    color: #33b8be;
+    border-bottom: 1px dotted #33b8be;
+    font-weight: 500;
+  }
+  

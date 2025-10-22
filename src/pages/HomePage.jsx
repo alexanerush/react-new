@@ -1,9 +1,19 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import "../styles/HomePage.css";           
+import "../styles/HomePage.css";
 import mainImage from "../assets/homepage.svg";
 import star from "../assets/star.png";
+
+// 💬 Tooltip компонент
+const PhoneTooltip = ({ children }) => {
+  return (
+    <span className="tooltip-wrapper">
+      {children}
+      <span className="tooltip-text">+3706578976</span>
+    </span>
+  );
+};
 
 const HomePage = () => {
   return (
@@ -32,9 +42,19 @@ const HomePage = () => {
 
             <div className="reviews">
               <h1>
-                <span className="hightlight">4.8 out of 5</span> based on 2000+ reviews
+                <span className="hightlight">4.8 out of 5</span> based on 2000+
+                reviews
               </h1>
             </div>
+
+    
+            <p className="contact-text">
+              For more information - {" "}
+              <PhoneTooltip>
+                <span className="call-word">call us</span>
+              </PhoneTooltip>
+              .
+            </p>
           </div>
 
           <div className="main-img">
