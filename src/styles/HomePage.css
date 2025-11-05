@@ -10,7 +10,7 @@
     gap: 2rem;
     flex-wrap: wrap;
     position: relative;
-    background: white;
+    background: #fff;
     overflow: hidden;
     padding: 2rem;
   }
@@ -42,7 +42,7 @@
     font-size: 60px;
     letter-spacing: 1.8px;
     margin-bottom: 2rem;
-    white-space: nowrap;
+    white-space: normal;
   }
   
   .blueword {
@@ -57,21 +57,24 @@
     letter-spacing: 0.36px;
   }
   
+  .custom-btn,
   .order-btn {
-    width: 193px;
-    height: 60px;
-    padding: 0.8rem 2rem;
     background-color: #33b8be;
-    color: white;
-    border: none;
+    color: #fff;
+    font-family: "Inter", sans-serif;
     font-size: 17px;
+    font-weight: 600;
+    padding: 0.8rem 2rem;
+    border: none;
     border-radius: 6px;
-    font-weight: bold;
     cursor: pointer;
     transition: background 0.3s ease;
     margin-top: 2rem;
+    width: 193px;
+    height: 60px;
   }
   
+  .custom-btn:hover,
   .order-btn:hover {
     background-color: #333;
   }
@@ -82,7 +85,7 @@
     margin-top: 2rem;
   }
   
-  .reviews h1 {
+  .reviews h2 {
     font-weight: 400;
     font-size: 16px;
     color: rgba(8, 9, 10, 1);
@@ -111,8 +114,8 @@
     visibility: hidden;
     opacity: 0;
     width: max-content;
-    background-color: none;
-    color:  rgba(53, 184, 190, 1);
+    background-color: #fff;
+    color: rgba(53, 184, 190, 1);
     text-align: center;
     border-radius: 8px;
     padding: 6px 10px;
@@ -124,6 +127,7 @@
     transition: opacity 0.2s ease, transform 0.2s ease;
     font-size: 14px;
     white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   }
   
   .tooltip-wrapper:hover .tooltip-text {

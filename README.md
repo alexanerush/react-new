@@ -1,16 +1,81 @@
-# React + Vite
+Food Delivery App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React single-page application for browsing and ordering meals.
+It includes a main page with presentation content and a menu page that fetches data from a public API.
+Users can select meal categories, adjust quantity, and add items to the cart.
 
-Currently, two official plugins are available:
+# Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Routing - implemented with react-router-dom (Home & Menu pages)
+- Dynamic menu - meals loaded from MockAPI.io
+- Reusable components - Header, Footer, Card, Button
+- Cart counter - updates in real time when items are added
+- Category filtering - Dessert / Dinner / Breakfast
+- Responsive design – adaptive layout for desktop and mobile
+- Error handling & loading states
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+# Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Category         Tools
+
+Framework	      React
+
+Routing           React Router DOM
+
+Styling	          CSS (custom, responsive)
+API	              MockAPI.io
+
+Build tool	      Vite / Create React App (depending on setup)
+
+
+# Project Structure
+
+src/
+ ├── components/
+ │   ├── Header.jsx
+ │   ├── Footer.jsx
+ │   ├── Card.jsx
+ │   ├── Button.jsx
+ │   └── ...
+ ├── pages/
+ │   ├── HomePage.jsx
+ │   └── MenuPage.jsx
+ ├── styles/
+ │   ├── Menu.css
+ │   ├── Card.css
+ │   └── ...
+ ├── assets/
+ ├── App.jsx
+ └── main.jsx
+
+# Installation & Setup
+
+Clone the repository:
+
+```bash
+git clone https://github.com/alexanerush/react-new.git
+cd react-new
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Open in browser:
+
+```arduino
+http://localhost:5173
+```
+
+
+
