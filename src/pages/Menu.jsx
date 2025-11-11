@@ -5,23 +5,29 @@ import "../styles/Menu.css";
 
 const MEALS_API = "https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals";
 const INITIAL_VISIBLE = 6;
-const CATEGORIES = ["Dessert", "Dinner", "Breakfast"];
 
 const MenuPage = ({ onAddToCart = () => {} }) => {
   const [meals, setMeals] = useState([]);
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("Dessert"); 
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     const fetchMeals = async () => {
       setIsLoading(true);
-      setError("");
       try {
         const response = await fetch(MEALS_API);
         const data = await response.json();
-        setMeals(Array.isArray(data) ? data : []);
+        const mealsData = Array.isArray(data) ? data : [];
+        setMeals(mealsData);
+
+        const uniqueCategories = Array.from(
+          new Set(mealsData.map((meal) => meal.category).filter(Boolean))
+        );
+        if (uniqueCategories.length > 0) {
+          setSelectedCategory(uniqueCategories[0]);
+        }
       } catch (err) {
         console.error("Error fetching meals:", err);
         setError("Failed to load menu. Please try again later.");
@@ -33,11 +39,19 @@ const MenuPage = ({ onAddToCart = () => {} }) => {
     fetchMeals();
   }, []);
 
-  const filteredMeals = meals.filter(
-    (meal) =>
-      meal.category &&
-      meal.category.toLowerCase() === selectedCategory.toLowerCase()
+  const categories = Array.from(
+    new Set(meals.map((meal) => meal.category).filter(Boolean))
   );
+
+  const activeCategory = selectedCategory || (categories.length ? categories[0] : "");
+
+  const filteredMeals = activeCategory
+    ? meals.filter(
+        (meal) =>
+          meal.category &&
+          meal.category.toLowerCase() === activeCategory.toLowerCase()
+      )
+    : meals;
 
   const visibleMeals = filteredMeals.slice(0, visibleCount);
   const hasMore = visibleCount < filteredMeals.length;
@@ -51,6 +65,28 @@ const MenuPage = ({ onAddToCart = () => {} }) => {
     setVisibleCount(INITIAL_VISIBLE);
   };
 
+  const renderContent = () => {
+    if (isLoading) {
+      return <p>Loading...</p>;
+    }
+
+    if (error) {
+      return <p className="error-text">{error}</p>;
+    }
+
+    if (visibleMeals.length === 0) {
+      return <p>No meals available.</p>;
+    }
+
+    return (
+      <div className="item-cards">
+        {visibleMeals.map((meal) => (
+          <Card key={meal.id} product={meal} onAddToCart={onAddToCart} />
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="menu-page">
       <div className="menu-container">
@@ -62,35 +98,22 @@ const MenuPage = ({ onAddToCart = () => {} }) => {
         </p>
 
         <div className="menu-filters">
-          {CATEGORIES.map((category) => (
-            <button
+          {categories.map((category) => (
+            <Button
               key={category}
               className={`filter-button ${
-                selectedCategory === category ? "active" : ""
+                activeCategory === category ? "active" : ""
               }`}
               onClick={() => handleCategoryClick(category)}
             >
               {category}
-            </button>
+            </Button>
           ))}
         </div>
 
-        {isLoading && <p>Loading...</p>}
-        {error && <p className="error-text">{error}</p>}
+        {renderContent()}
 
-        <div className="item-cards">
-          {!isLoading &&
-            !error &&
-            visibleMeals.map((meal) => (
-              <Card key={meal.id} product={meal} onAddToCart={onAddToCart} />
-            ))}
-
-          {!isLoading && !error && visibleMeals.length === 0 && (
-            <p>No meals available.</p>
-          )}
-        </div>
-
-        {hasMore && !isLoading && (
+        {hasMore && !isLoading && !error && (
           <Button className="button--more" onClick={handleSeeMore}>
             See more
           </Button>
