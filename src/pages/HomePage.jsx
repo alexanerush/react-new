@@ -22,10 +22,15 @@ const HomePage = () => {
             ever since the 1500.
           </p>
 
-          <Button text="Place an Order" className="order-btn" />
+          <Button text="Place an Order" className="order-btn" disabled />
+
 
           <div className="star">
             <img src={star} alt="rating stars" />
+          </div>
+          
+          <div className="rating-block">
+            <div className="stars">★★★★★</div>
           </div>
 
           <div className="reviews">
