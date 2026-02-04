@@ -1,6 +1,11 @@
 import React from "react";
 
-const Tooltip = ({ children, text }) => {
+type TooltipProps = {
+  children: React.ReactNode;
+  text: string;
+};
+
+const Tooltip: React.FC<TooltipProps> = ({ children, text }) => {
   return (
     <span className="tooltip-wrapper">
       {children}

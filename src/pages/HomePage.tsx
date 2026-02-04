@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import type { RootState } from "../store/store";
 
 import Button from "../components/Button";
 import "../styles/HomePage.css";
@@ -8,9 +9,11 @@ import mainImage from "../assets/homepage.svg";
 import star from "../assets/star.png";
 import Tooltip from "../components/Tooltip";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
 
   const handlePlaceOrder = () => {
     if (!isAuthenticated) {

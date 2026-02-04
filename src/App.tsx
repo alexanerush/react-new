@@ -11,14 +11,20 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-import { addToCart } from "./store/cartSlice";
+import { addToCart, type CartItemPayload } from "./store/cartSlice";
+import type { RootState, AppDispatch } from "./store/store";
+import type { ProductInCart } from "./components/Card";
 
 function App() {
-  const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleAddToCart = (item) => {
-    dispatch(addToCart(item));
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
+
+  const handleAddToCart = (item: ProductInCart) => {
+    // addToCart принимает payload с quantity (и может игнорить остальное)
+    dispatch(addToCart(item as CartItemPayload));
   };
 
   return (
