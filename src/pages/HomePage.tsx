@@ -8,12 +8,15 @@ import "../styles/HomePage.css";
 import mainImage from "../assets/homepage.svg";
 import star from "../assets/star.png";
 import Tooltip from "../components/Tooltip";
+import { useLang } from "../i18n/LanguageContext";
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
+
+  const { t } = useLang();
 
   const handlePlaceOrder = () => {
     if (!isAuthenticated) {
@@ -28,19 +31,16 @@ const HomePage: React.FC = () => {
       <section className="main">
         <div className="main-text">
           <h1>
-            Beautiful food & <br />
-            takeaway, <span className="blueword">delivered</span> <br />
-            to your door.
+            {t("home.title.line1")} <br />
+            {t("home.title.line2")}{" "}
+            <span className="blueword">{t("home.title.line3")}</span> <br />
+            {t("home.title.line4")}
           </h1>
 
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500.
-          </p>
+          <p>{t("home.description")}</p>
 
           <div onClick={handlePlaceOrder} style={{ display: "inline-block" }}>
-            <Button text="Place an Order" className="order-btn" />
+            <Button text={t("home.orderButton")} className="order-btn" />
           </div>
 
           <div className="star">
@@ -52,16 +52,13 @@ const HomePage: React.FC = () => {
           </div>
 
           <div className="reviews">
-            <h2>
-              <span className="hightlight">4.8 out of 5</span> based on 2000+
-              reviews
-            </h2>
+            <h2>{t("home.ratingText")}</h2>
           </div>
 
           <p className="contact-text">
-            For more information —{" "}
+            {t("home.contact")}{" "}
             <Tooltip text="+3706578976">
-              <span className="call-word">call us</span>
+              <span className="call-word">{t("home.callUs")}</span>
             </Tooltip>
             .
           </p>

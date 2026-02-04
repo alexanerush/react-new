@@ -1,0 +1,39 @@
+{
+    "nav.home": "Главная",
+    "nav.menu": "Меню",
+    "nav.company": "О компании",
+    "nav.order": "Заказ",
+    "nav.login": "Войти",
+    "nav.logout": "Выйти",
+  
+    "home.title.line1": "Лучшая еда &",
+    "home.title.line2": "на вынос,",
+    "home.title.line3": "доставленная",
+    "home.title.line4": "к вашей двери.",
+  
+    "home.description": "Lorem Ipsum — это текст-заполнитель для полиграфии и верстки. Lorem Ipsum используется как стандартный макетный текст с 1500-х годов.",
+  
+    "home.orderButton": "Сделать заказ",
+    "home.ratingText": "4.8 из 5 на основе 2000+ отзывов",
+    "home.contact": "Для информации —",
+    "home.callUs": "позвоните нам",
+
+    "footer.company": "Компания",
+    "footer.template": "Шаблон",
+    "footer.flowbase": "Flowbase",
+    "footer.home": "Главная",
+    "footer.order": "Заказ",
+    "footer.faq": "FAQ",
+    "footer.contact": "Контакты",
+    "footer.styleGuide": "Стайлгайд",
+    "footer.changelog": "Список изменений",
+    "footer.licence": "Лицензия",
+    "footer.webflowUniversity": "Webflow University",
+    "footer.moreCloneables": "Больше шаблонов",
+    "footer.description": "Шаблон Takeaway & Delivery для малого и среднего бизнеса.",
+    "footer.builtBy": "Сделано",
+    "footer.poweredBy": "Работает на"
+  }
+
+
+  

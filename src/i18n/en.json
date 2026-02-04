@@ -1,0 +1,37 @@
+{
+  "nav.home": "Home",
+  "nav.menu": "Menu",
+  "nav.company": "Company",
+  "nav.order": "Order",
+  "nav.login": "Login",
+  "nav.logout": "Logout",
+
+  "home.title.line1": "Beautiful food &",
+  "home.title.line2": "takeaway,",
+  "home.title.line3": "delivered",
+  "home.title.line4": "to your door.",
+
+  "home.description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.",
+
+  "home.orderButton": "Place an Order",
+  "home.ratingText": "4.8 out of 5 based on 2000+ reviews",
+  "home.contact": "For more information —",
+  "home.callUs": "call us",
+
+
+  "footer.company": "Company",
+  "footer.template": "Template",
+  "footer.flowbase": "Flowbase",
+  "footer.home": "Home",
+  "footer.order": "Order",
+  "footer.faq": "FAQ",
+  "footer.contact": "Contact",
+  "footer.styleGuide": "Style Guide",
+  "footer.changelog": "Changelog",
+  "footer.licence": "Licence",
+  "footer.webflowUniversity": "Webflow University",
+  "footer.moreCloneables": "More Cloneables",
+  "footer.description": "Takeaway & Delivery template for small – medium businesses.",
+  "footer.builtBy": "Built by",
+  "footer.poweredBy": "Powered by"
+}

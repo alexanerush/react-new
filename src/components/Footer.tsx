@@ -3,28 +3,31 @@ import "../styles/Footer.css";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import logo from "../assets/Logo1.png";
 import PatternFooter from "../assets/PatternFooter.png";
-
-type FooterColumn = {
-  title: string;
-  links: string[];
-};
-
-const footerData: FooterColumn[] = [
-  {
-    title: "Company",
-    links: ["Home", "Order", "FAQ", "Contact"],
-  },
-  {
-    title: "Template",
-    links: ["Style Guide", "Changelog", "Licence", "Webflow University"],
-  },
-  {
-    title: "Flowbase",
-    links: ["More Cloneables"],
-  },
-];
+import { useLang } from "../i18n/LanguageContext";
 
 const Footer: React.FC = () => {
+  const { t } = useLang();
+
+  const footerData = [
+    {
+      title: t("footer.company"),
+      links: [t("footer.home"), t("footer.order"), t("footer.faq"), t("footer.contact")],
+    },
+    {
+      title: t("footer.template"),
+      links: [
+        t("footer.styleGuide"),
+        t("footer.changelog"),
+        t("footer.licence"),
+        t("footer.webflowUniversity"),
+      ],
+    },
+    {
+      title: t("footer.flowbase"),
+      links: [t("footer.moreCloneables")],
+    },
+  ];
+
   return (
     <footer className="footer">
       <div className="footer-top">
@@ -35,9 +38,7 @@ const Footer: React.FC = () => {
         <div className="columns">
           <div className="logo-column">
             <img src={logo} alt="Logo" className="footer-logo" />
-            <p className="footer-description">
-              Takeaway & Delivery template <br /> for small – medium businesses.
-            </p>
+            <p className="footer-description">{t("footer.description")}</p>
           </div>
 
           <div className="footer-columns">
@@ -47,7 +48,9 @@ const Footer: React.FC = () => {
                 <ul className="footer-links">
                   {column.links.map((link) => (
                     <li className="footer-link-item" key={link}>
-                      <button className="footer-link-btn">{link}</button>
+                      <button className="footer-link-btn" type="button">
+                        {link}
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -59,11 +62,11 @@ const Footer: React.FC = () => {
 
       <div className="footer-bottom">
         <p>
-          Built by{" "}
-          <span className="footer-bottom-link">Flowbase</span> · Powered by{" "}
-          <span className="footer-bottom-link">Webflow</span>
+          {t("footer.builtBy")} <span className="footer-bottom-link">Flowbase</span> ·{" "}
+          {t("footer.poweredBy")} <span className="footer-bottom-link">Webflow</span>
         </p>
-        <div className="footer-socials">
+
+        <div className="footer-socials" aria-label="Social links">
           <FaInstagram />
           <FaTwitter />
           <FaYoutube />
