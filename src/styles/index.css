@@ -1,8 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+:root {
+  --bg: #f8f9fa; 
+  --text: #111827;
+  --card: #ffffff;
+  --border: rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme="dark"] {
+  --bg: #0b0f19;
+  --text: #e5e7eb;
+  --card: #111827;
+  --border: rgba(255, 255, 255, 0.18);
+}
 
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background-color: #f7f7f7;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.theme-switcher {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.theme-btn {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.theme-btn.active {
+  background: var(--card);
+}
+
+.theme-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }

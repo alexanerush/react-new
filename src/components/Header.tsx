@@ -6,6 +6,8 @@ import { logout } from "../store/authSlice";
 import "../styles/Header.css";
 import Logo from "./Logo";
 import CartIcon from "./CartIcon";
+import ThemeSwitcher from "./ThemeSwitcher";
+
 
 const Header: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -66,6 +68,7 @@ const Header: React.FC = () => {
           )}
         </ul>
 
+        <ThemeSwitcher />
         <CartIcon itemCount={cartCount} />
       </nav>
     </header>
