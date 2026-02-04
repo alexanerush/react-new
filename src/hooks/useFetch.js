@@ -1,8 +1,13 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const LOG_KEY = "fetch_log";
 
 const useFetch = () => {
+  const [_, forceUpdate] = useState(0); 
+
+  useEffect(() => {
+  }, []);
+
   const fetchWithLogger = useCallback(
     async (url, options = {}) => {
       const { method = "GET", body } = options;
@@ -11,8 +16,7 @@ const useFetch = () => {
       if (typeof body === "string") {
         try {
           payload = JSON.parse(body);
-        } catch {
-        }
+        } catch {}
       }
 
       const saveLog = (logEntry) => {
@@ -32,13 +36,11 @@ const useFetch = () => {
           timestamp: new Date().toISOString(),
           url,
           method,
-          payload,         
-          status: response.status, 
+          payload,
+          status: response.status,
         };
 
         saveLog(log);
-        console.log("[fetch success]", log);
-
         return response;
       } catch (err) {
         const log = {
@@ -51,8 +53,6 @@ const useFetch = () => {
         };
 
         saveLog(log);
-        console.error("[fetch error]", log);
-
         throw err;
       }
     },
