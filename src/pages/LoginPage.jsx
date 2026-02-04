@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../store/authSlice";
 
 import { auth, db } from "../firebase";
 import {
@@ -12,6 +14,7 @@ import "../styles/LoginPage.css";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch(); 
 
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
@@ -35,13 +38,13 @@ export default function LoginPage() {
           createdAt: serverTimestamp(),
         });
 
-        localStorage.setItem("isAuthenticated", "true");
+        dispatch(login());         
         navigate("/order");
         return;
       }
 
       await signInWithEmailAndPassword(auth, email, password);
-      localStorage.setItem("isAuthenticated", "true");
+      dispatch(login());           
       navigate("/order");
     } catch (err) {
       setError(err?.message || "Something went wrong");
