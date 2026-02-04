@@ -8,6 +8,8 @@ import {
 } from "firebase/auth";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
+import "../styles/LoginPage.css";
+
 export default function LoginPage() {
   const navigate = useNavigate();
 
@@ -49,62 +51,58 @@ export default function LoginPage() {
   };
 
   return (
-    <div style={{ padding: 24, maxWidth: 420 }}>
-      <h1>{mode === "login" ? "Login" : "Register"}</h1>
+    <div className="login-wrapper">
+      <div className="login-card">
+        <h1 className="login-title">
+          {mode === "login" ? "Login" : "Register"}
+        </h1>
 
-      <form onSubmit={handleSubmit} style={{ display: "grid", gap: 12 }}>
-        <label style={{ display: "grid", gap: 6 }}>
-          Email
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            autoComplete="email"
-          />
-        </label>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <label className="login-label">
+            Email
+            <input
+              className="login-input"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
 
-        <label style={{ display: "grid", gap: 6 }}>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-            autoComplete={mode === "login" ? "current-password" : "new-password"}
-          />
-        </label>
+          <label className="login-label">
+            Password
+            <input
+              className="login-input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={6}
+            />
+          </label>
 
-        {error && (
-          <p style={{ margin: 0, color: "crimson" }}>
-            {error}
-          </p>
-        )}
+          {error && <p className="login-error">{error}</p>}
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Please wait..." : mode === "login" ? "Log in" : "Create account"}
-        </button>
-      </form>
-
-      <div style={{ marginTop: 12 }}>
-        {mode === "login" ? (
-          <button
-            type="button"
-            onClick={() => setMode("register")}
-            style={{ border: "none", background: "transparent", padding: 0, cursor: "pointer" }}
-          >
-            No account? Register
+          <button className="login-button" type="submit" disabled={loading}>
+            {loading
+              ? "Please wait..."
+              : mode === "login"
+              ? "Log in"
+              : "Create account"}
           </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => setMode("login")}
-            style={{ border: "none", background: "transparent", padding: 0, cursor: "pointer" }}
-          >
-            Already have an account? Log in
-          </button>
-        )}
+        </form>
+
+        <p className="login-switch">
+          {mode === "login" ? (
+            <span onClick={() => setMode("register")}>
+              No account? <b>Register</b>
+            </span>
+          ) : (
+            <span onClick={() => setMode("login")}>
+              Already have an account? <b>Log in</b>
+            </span>
+          )}
+        </p>
       </div>
     </div>
   );
