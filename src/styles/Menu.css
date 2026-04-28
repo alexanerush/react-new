@@ -1,0 +1,138 @@
+.menu-page {
+    background-color: #f6fcff;
+    padding: 48px 0 64px;
+    font-family: "Inter", sans-serif;
+  }
+  
+  .menu-container {
+    width: min(1140px, 100% - 32px);
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .menu-title {
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: 1.65px;
+    color: #35b8be;
+    margin-bottom: 12px;
+  }
+  
+  .menu-subtitle {
+    color: #777;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  
+  .menu-subtitle .highlight {
+    color: #35b8be;
+    font-weight: 500;
+  }
+  
+  .menu-filters {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-button {
+    padding: 12px 32px;
+    border: 1px solid #d9e4ea;
+    background-color: #ffffff;
+    color: #1f1f1f;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  
+  .filter-button:hover {
+    border-color: #35b8be;
+    color: #35b8be;
+  }
+  
+  .filter-button.active {
+    background-color: #35b8be;
+    color: #fff;
+    border-color: #35b8be;
+  }
+  
+  .item-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  
+  .button--more,
+  .see-more-button {
+    background-color: #35b8be;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: block;
+    margin: 24px auto 0;
+  }
+  
+  .button--more:hover,
+  .see-more-button:hover {
+    background-color: #2fa3a8;
+  }
+  
+  .error-text {
+    color: #d9534f;
+    margin-bottom: 24px;
+  }
+  
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    background-color: #6a6a6a;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    transition: opacity 0.3s;
+    z-index: 10;
+  }
+  
+  .tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  @media (max-width: 1100px) {
+    .item-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .menu-title {
+      font-size: 36px;
+    }
+  
+    .filter-button {
+      padding: 10px 24px;
+      font-size: 13px;
+    }
+  }
+  

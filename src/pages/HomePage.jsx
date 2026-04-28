@@ -1,69 +1,54 @@
 import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Button from "../components/Button";
 import "../styles/HomePage.css";
 import mainImage from "../assets/homepage.svg";
 import star from "../assets/star.png";
-
-// 💬 Tooltip компонент
-const PhoneTooltip = ({ children }) => {
-  return (
-    <span className="tooltip-wrapper">
-      {children}
-      <span className="tooltip-text">+3706578976</span>
-    </span>
-  );
-};
+import Tooltip from "../components/Tooltip";
 
 const HomePage = () => {
   return (
-    <>
-      <Header />
-      <main className="main-page">
-        <section className="main">
-          <div className="main-text">
-            <h1>
-              Beautiful food & <br />
-              takeaway, <span className="blueword">delivered</span> <br />
-              to your door.
-            </h1>
+    <main className="main-page">
+      <section className="main">
+        <div className="main-text">
+          <h1>
+            Beautiful food & <br />
+            takeaway, <span className="blueword">delivered</span> <br />
+            to your door.
+          </h1>
 
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500.
-            </p>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500.
+          </p>
 
-            <button className="order-btn">Place an Order</button>
+          <Button text="Place an Order" className="order-btn" />
 
-            <div className="star">
-              <img src={star} alt="rating stars" />
-            </div>
-
-            <div className="reviews">
-              <h1>
-                <span className="hightlight">4.8 out of 5</span> based on 2000+
-                reviews
-              </h1>
-            </div>
-
-    
-            <p className="contact-text">
-              For more information - {" "}
-              <PhoneTooltip>
-                <span className="call-word">call us</span>
-              </PhoneTooltip>
-              .
-            </p>
+          <div className="star">
+            <img src={star} alt="rating stars" />
           </div>
 
-          <div className="main-img">
-            <img src={mainImage} alt="Delivery illustration" />
+          <div className="reviews">
+            <h2>
+              <span className="hightlight">4.8 out of 5</span> based on 2000+
+              reviews
+            </h2>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+
+          <p className="contact-text">
+            For more information —{" "}
+            <Tooltip text="+3706578976">
+              <span className="call-word">call us</span>
+            </Tooltip>
+            .
+          </p>
+        </div>
+
+        <div className="main-img">
+          <img src={mainImage} alt="Delivery illustration" />
+        </div>
+      </section>
+    </main>
   );
 };
 
