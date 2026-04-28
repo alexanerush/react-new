@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Footer.css";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-import logo from "../assets/logo.png";
+import logo from "../assets/Logo1.png";
 import PatternFooter from "../assets/PatternFooter.png";
 
 type FooterColumn = {

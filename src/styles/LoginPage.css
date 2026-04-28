@@ -4,16 +4,19 @@
     justify-content: center;
     align-items: center;
     padding: 40px;
+    background: var(--bg);
+    color: var(--text);
   }
   
   .login-card {
     width: 100%;
     max-width: 400px;
-    background: white;
+    background: var(--card);
+    color: var(--text);
     padding: 32px;
     border-radius: 12px;
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
-    border: 1px solid #eaeaea;
+    border: 1px solid var(--border);
   }
   
   .login-title {
@@ -22,6 +25,7 @@
     font-size: 28px;
     text-align: center;
     font-weight: 600;
+    color: var(--text);
   }
   
   .login-form {
@@ -34,20 +38,23 @@
     display: flex;
     flex-direction: column;
     font-size: 14px;
+    color: var(--text);
   }
   
   .login-input {
     margin-top: 6px;
     padding: 10px;
     border-radius: 8px;
-    border: 1px solid #d0d0d0;
+    border: 1px solid var(--border);
     font-size: 15px;
     outline: none;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    background: var(--bg);
+    color: var(--text);
   }
   
   .login-input:focus {
-    border-color: #00b4d8;
+    border-color: rgba(53, 184, 190, 1);
   }
   
   .login-button {
@@ -85,6 +92,7 @@
     text-align: center;
     font-size: 14px;
     cursor: pointer;
+    color: var(--text);
   }
   
   .login-switch span {
@@ -92,6 +100,10 @@
   }
   
   .login-switch span:hover {
-    color: #0077b6;
+    color: rgba(53, 184, 190, 1);
+  }
+  
+  html[data-theme="dark"] .login-card {
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
   }
   
