@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import "../styles/Menu.css";
+import useFetch from "../hooks/useFetch";
 
 const MEALS_API = "https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals";
 const INITIAL_VISIBLE = 6;
@@ -13,11 +14,13 @@ const MenuPage = ({ onAddToCart = () => {} }) => {
   const [error, setError] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
+  const fetchWithLogger = useFetch();
+
   useEffect(() => {
     const fetchMeals = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(MEALS_API);
+        const response = await fetchWithLogger(MEALS_API);
         const data = await response.json();
         const mealsData = Array.isArray(data) ? data : [];
         setMeals(mealsData);
@@ -37,13 +40,14 @@ const MenuPage = ({ onAddToCart = () => {} }) => {
     };
 
     fetchMeals();
-  }, []);
+  }, [fetchWithLogger]);
 
   const categories = Array.from(
     new Set(meals.map((meal) => meal.category).filter(Boolean))
   );
 
-  const activeCategory = selectedCategory || (categories.length ? categories[0] : "");
+  const activeCategory =
+    selectedCategory || (categories.length ? categories[0] : "");
 
   const filteredMeals = activeCategory
     ? meals.filter(
