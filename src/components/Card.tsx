@@ -2,21 +2,40 @@ import React, { useState } from "react";
 import Button from "../components/Button";
 import "../styles/Card.css";
 
-const Card = ({ product, onAddToCart }) => {
+export type Product = {
+  id?: string | number;
+  meal?: string;
+  price?: string | number | null;
+  img?: string | null;
+  instructions?: string | null;
+};
+
+export type ProductInCart = Product & {
+  quantity: number;
+};
+
+type CardProps = {
+  product?: Product | null;
+  onAddToCart?: (item: ProductInCart) => void;
+};
+
+const Card: React.FC<CardProps> = ({ product, onAddToCart }) => {
+  const [quantity, setQuantity] = useState<number>(1);
+
   if (!product) return null;
 
-  const [quantity, setQuantity] = useState(1);
-
-  const handleQuantityChange = (e) => {
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
-    if (value >= 1) setQuantity(value);
+    if (Number.isFinite(value) && value >= 1) setQuantity(value);
   };
 
   const handleAddToCart = () => {
-    if (typeof onAddToCart === "function") {
-      onAddToCart({ ...product, quantity });
-    }
+    onAddToCart?.({ ...product, quantity });
   };
+
+  const priceNumber = product.price !== null && product.price !== undefined
+    ? Number(product.price)
+    : NaN;
 
   return (
     <div className="item-card">
@@ -36,7 +55,7 @@ const Card = ({ product, onAddToCart }) => {
         <div className="item-info">
           <h2 className="product-title">{product.meal}</h2>
           <span className="card-price">
-            {product.price ? `$${Number(product.price).toFixed(2)}` : "—"}
+            {Number.isFinite(priceNumber) ? `$${priceNumber.toFixed(2)}` : "—"}
           </span>
         </div>
 
@@ -51,7 +70,7 @@ const Card = ({ product, onAddToCart }) => {
         <div className="item-footer">
           <input
             type="number"
-            min="1"
+            min={1}
             value={quantity}
             onChange={handleQuantityChange}
             className="item-amount"
@@ -69,4 +88,3 @@ const Card = ({ product, onAddToCart }) => {
 };
 
 export default Card;
-

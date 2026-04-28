@@ -4,7 +4,12 @@ import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import PatternFooter from "../assets/PatternFooter.png";
 
-const footerData = [
+type FooterColumn = {
+  title: string;
+  links: string[];
+};
+
+const footerData: FooterColumn[] = [
   {
     title: "Company",
     links: ["Home", "Order", "FAQ", "Contact"],
@@ -19,7 +24,7 @@ const footerData = [
   },
 ];
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="footer-top">

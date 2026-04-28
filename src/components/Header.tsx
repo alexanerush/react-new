@@ -1,17 +1,20 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "../store/store";
 import { logout } from "../store/authSlice";
 import "../styles/Header.css";
 import Logo from "./Logo";
 import CartIcon from "./CartIcon";
 
-const Header = () => {
-  const dispatch = useDispatch();
+const Header: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const cartCount = useSelector((state) => state.cart.count);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const cartCount = useSelector((state: RootState) => state.cart.count);
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
 
   const handleLogout = () => {
     dispatch(logout());

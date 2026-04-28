@@ -1,27 +1,39 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 
 const LOG_KEY = "fetch_log";
 
+type FetchOptions = RequestInit & {
+  body?: any;
+};
+
+type LogEntry = {
+  timestamp: string;
+  url: string;
+  method: string;
+  payload: any;
+  status: number | string;
+  error?: string;
+};
+
 const useFetch = () => {
-  const [_, forceUpdate] = useState(0); 
-
-  useEffect(() => {
-  }, []);
-
   const fetchWithLogger = useCallback(
-    async (url, options = {}) => {
+    async (url: string, options: FetchOptions = {}) => {
       const { method = "GET", body } = options;
 
       let payload = body;
       if (typeof body === "string") {
         try {
           payload = JSON.parse(body);
-        } catch {}
+        } catch {
+          // игнор
+        }
       }
 
-      const saveLog = (logEntry) => {
+      const saveLog = (logEntry: LogEntry) => {
         try {
-          const prev = JSON.parse(localStorage.getItem(LOG_KEY) || "[]");
+          const prev: LogEntry[] = JSON.parse(
+            localStorage.getItem(LOG_KEY) || "[]"
+          );
           const next = [...prev, logEntry];
           localStorage.setItem(LOG_KEY, JSON.stringify(next));
         } catch (e) {
@@ -32,7 +44,7 @@ const useFetch = () => {
       try {
         const response = await fetch(url, options);
 
-        const log = {
+        const log: LogEntry = {
           timestamp: new Date().toISOString(),
           url,
           method,
@@ -41,15 +53,16 @@ const useFetch = () => {
         };
 
         saveLog(log);
+
         return response;
-      } catch (err) {
-        const log = {
+      } catch (err: any) {
+        const log: LogEntry = {
           timestamp: new Date().toISOString(),
           url,
           method,
           payload,
           status: "NETWORK_ERROR",
-          error: err.message,
+          error: err?.message,
         };
 
         saveLog(log);

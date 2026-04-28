@@ -1,6 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
+import type { AppDispatch } from "../store/store";
 import { login } from "../store/authSlice";
 
 import { auth, db } from "../firebase";
@@ -12,18 +14,20 @@ import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
 import "../styles/LoginPage.css";
 
+type Mode = "login" | "register";
+
 export default function LoginPage() {
   const navigate = useNavigate();
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch<AppDispatch>();
 
-  const [mode, setMode] = useState("login");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [mode, setMode] = useState<Mode>("login");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     setLoading(true);
@@ -34,20 +38,22 @@ export default function LoginPage() {
 
         await setDoc(doc(db, "users", cred.user.uid), {
           uid: cred.user.uid,
-          email: cred.user.email,
+          email: cred.user.email, // может быть null — для Firestore это ок
           createdAt: serverTimestamp(),
         });
 
-        dispatch(login());         
+        dispatch(login());
         navigate("/order");
         return;
       }
 
       await signInWithEmailAndPassword(auth, email, password);
-      dispatch(login());           
+      dispatch(login());
       navigate("/order");
-    } catch (err) {
-      setError(err?.message || "Something went wrong");
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong";
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -56,9 +62,7 @@ export default function LoginPage() {
   return (
     <div className="login-wrapper">
       <div className="login-card">
-        <h1 className="login-title">
-          {mode === "login" ? "Login" : "Register"}
-        </h1>
+        <h1 className="login-title">{mode === "login" ? "Login" : "Register"}</h1>
 
         <form className="login-form" onSubmit={handleSubmit}>
           <label className="login-label">
@@ -67,7 +71,9 @@ export default function LoginPage() {
               className="login-input"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
               required
             />
           </label>
@@ -78,7 +84,9 @@ export default function LoginPage() {
               className="login-input"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setPassword(e.target.value)
+              }
               required
               minLength={6}
             />
@@ -97,11 +105,21 @@ export default function LoginPage() {
 
         <p className="login-switch">
           {mode === "login" ? (
-            <span onClick={() => setMode("register")}>
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={() => setMode("register")}
+              onKeyDown={(e) => e.key === "Enter" && setMode("register")}
+            >
               No account? <b>Register</b>
             </span>
           ) : (
-            <span onClick={() => setMode("login")}>
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={() => setMode("login")}
+              onKeyDown={(e) => e.key === "Enter" && setMode("login")}
+            >
               Already have an account? <b>Log in</b>
             </span>
           )}
