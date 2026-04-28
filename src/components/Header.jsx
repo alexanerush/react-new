@@ -27,6 +27,11 @@ const Header = ({ cartCount = 0 }) => {
             </Link>
           </li>
           <li>
+            <Link to="/order" className="nav-link">
+              Order
+            </Link>
+          </li>
+          <li>
             <Link to="/login" className="nav-link">
               Login
             </Link>
