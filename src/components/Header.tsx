@@ -4,14 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "../store/store";
 import { logout } from "../store/authSlice";
 import "../styles/Header.css";
+
 import Logo from "./Logo";
 import CartIcon from "./CartIcon";
 import ThemeSwitcher from "./ThemeSwitcher";
-
+import LanguageDropdown from "./LanguageDropdown";
+import { useLang } from "../i18n/LanguageContext";
 
 const Header: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+
+  const { t } = useLang();
 
   const cartCount = useSelector((state: RootState) => state.cart.count);
   const isAuthenticated = useSelector(
@@ -31,27 +35,27 @@ const Header: React.FC = () => {
         <ul className="nav-links">
           <li>
             <Link to="/" className="nav-link">
-              Home
+              {t("nav.home")}
             </Link>
           </li>
           <li>
             <Link to="/menu" className="nav-link">
-              Menu
+              {t("nav.menu")}
             </Link>
           </li>
           <li>
             <Link to="/company" className="nav-link">
-              Company
+              {t("nav.company")}
             </Link>
           </li>
           <li>
             <Link to="/order" className="nav-link">
-              Order
+              {t("nav.order")}
             </Link>
           </li>
           <li>
             <Link to="/login" className="nav-link">
-              Login
+              {t("nav.login")}
             </Link>
           </li>
 
@@ -62,12 +66,13 @@ const Header: React.FC = () => {
                 className="nav-link nav-link-btn"
                 onClick={handleLogout}
               >
-                Logout
+                {t("nav.logout")}
               </button>
             </li>
           )}
         </ul>
 
+        <LanguageDropdown />
         <ThemeSwitcher />
         <CartIcon itemCount={cartCount} />
       </nav>

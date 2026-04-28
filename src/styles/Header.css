@@ -82,3 +82,55 @@
   html[data-theme="dark"] .nav-link-btn {
   color: #ffffff;
 }
+.lang {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.lang-btn {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+  line-height: 1;
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 6px;
+  margin: 0;
+  list-style: none;
+  min-width: 72px;
+  z-index: 50;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+.lang-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.lang-item:hover {
+  background: rgba(53, 184, 190, 0.12);
+}
+
+.lang-item.active {
+  background: rgba(53, 184, 190, 0.18);
+}

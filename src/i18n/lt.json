@@ -1,0 +1,36 @@
+{
+  "nav.home": "Pradžia",
+  "nav.menu": "Meniu",
+  "nav.company": "Įmonė",
+  "nav.order": "Užsakymas",
+  "nav.login": "Prisijungti",
+  "nav.logout": "Atsijungti",
+
+  "home.title.line1": "Gražus maistas &",
+  "home.title.line2": "išsinešimui,",
+  "home.title.line3": "pristatytas",
+  "home.title.line4": "iki jūsų durų.",
+
+  "home.description": "Lorem Ipsum yra maketinis teksto pavyzdys spaudai ir maketavimui. Lorem Ipsum buvo standartinis maketinis tekstas nuo 1500 metų.",
+
+  "home.orderButton": "Pateikti užsakymą",
+  "home.ratingText": "4.8 iš 5 pagal 2000+ atsiliepimų",
+  "home.contact": "Daugiau informacijos —",
+  "home.callUs": "skambinkite",
+
+  "footer.company": "Įmonė",
+  "footer.template": "Šablonas",
+  "footer.flowbase": "Flowbase",
+  "footer.home": "Pradžia",
+  "footer.order": "Užsakymas",
+  "footer.faq": "DUK",
+  "footer.contact": "Kontaktai",
+  "footer.styleGuide": "Stiliaus gidas",
+  "footer.changelog": "Pakeitimų žurnalas",
+  "footer.licence": "Licencija",
+  "footer.webflowUniversity": "Webflow University",
+  "footer.moreCloneables": "Daugiau šablonų",
+  "footer.description": "Takeaway & Delivery šablonas mažoms ir vidutinėms įmonėms.",
+  "footer.builtBy": "Sukurta",
+  "footer.poweredBy": "Palaikoma"
+}

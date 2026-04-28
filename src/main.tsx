@@ -8,13 +8,16 @@ import App from "./App";
 import { store } from "./store/store";
 
 import { ThemeProvider } from "./theme/ThemeContext";
+import { LanguageProvider } from "./i18n/LanguageContext";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <ThemeProvider>
-          <App />
+          <LanguageProvider>
+            <App />
+          </LanguageProvider>
         </ThemeProvider>
       </BrowserRouter>
     </Provider>
